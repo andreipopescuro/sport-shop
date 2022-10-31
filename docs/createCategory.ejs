@@ -1,0 +1,21 @@
+<html lang="en">
+<%- include('./parts/head.ejs') %>
+
+<body>
+  <%- include('./parts/homeBtn.ejs') %>
+  <h1 class="category-h1">Adauga o noua categorie</h1>
+  <p class="override-text">Suprascrierea unei categorii va sterge categoria actuala</p>
+
+  <form action="/home" method="POST" class="add-category-form">
+    <div class="category-form-content-wrapper">
+      <input type="text" placeholder="Numele categoriei..." id="add-category-input" required name="title">
+      <button id="submit-category" class="btn">Finalizare</button>
+    </div>
+  </form>
+  <%- include('./parts/footer.ejs') %>
+  <script>
+
+  </script>
+</body>
+
+</html>

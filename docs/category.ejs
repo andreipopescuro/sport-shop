@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./parts/head.ejs') %>
+
+<body class="cat-body">
+  <%- include('./parts/homeBtn.ejs') %>
+  <div class="category-header">
+    <h1><%= title %></h1>
+    <a class="delete-category" data-doc="<%= title %>">
+      <button class="btn">Sterge aceasta categorie</button>
+    </a>
+    <!-- redirect catre home page -->
+  </div>
+  <div class="art-wrapper">
+    <div class="category-article-header">
+      <h3>Articole
+        <% if (articles.length > 1) { %>
+        <span class="total-art">(<%= articles.length - 1 %>)</span>
+        <% } else { %>
+        <span>( 0 )</span>
+
+        <% } %>
+      </h3>
+      <a href="/home/<%= title %>/createArticle"><button class="btn">Adauga un nou articol</button></a>
+      <!-- redirect catre adaugarea unui nou articol -->
+    </div>
+    <div class="category-articles">
+      <% if (articles.length > 1) { %>
+
+      <% articles.filter( (article)=> { %>
+      <% if (article.name !== '') { %>
+
+
+
+      <div class="artcl">
+        <div class="about-art">
+          <div class="article-title"><span class="p1">Produs : </span> <%= article.name %></div>
+          <div class="article-price"><span class="p2">Pret : </span><%= article.price %> lei</div>
+        </div>
+        <a href="/home/<%= title %>/<%= article._id %>">Mai multe...
+        </a>
+        <div class="delete-article-container">
+          <a data-art="<% article._id %>" class="del-art">
+            <button class="btn">Sterge articol</button>
+          </a>
+        </div>
+      </div>
+      <% } %>
+      <% }) %> <% } else { %>
+      <p>Nu sunt articole de afisat</p>
+
+      <% } %>
+
+    </div>
+  </div>
+
+  <%- include('./parts/footer.ejs') %>
+  <script>
+    const deleteCategory = document.querySelector('.delete-category')
+
+    deleteCategory.addEventListener('click', e => {
+      const endpoint = `/home/${deleteCategory.dataset.doc}`
+      fetch(endpoint, {
+          method: 'DELETE',
+          body: 'daat'
+        })
+        .then(response => response.json())
+        .then(data => window.location.href = data.redirect)
+        .catch(err => console.log(err))
+    })
+
+    // const allDeleleArticleButtons = document.querySelectorAll('.del-art')
+    // allDeleleArticleButtons.forEach((button) => {
+    //   button.addEventListener('click', () => {
+    //       const endpoint = `/home/${deleteCategory.dataset.doc}`
+    //       fetch(endpoint, {
+    //         method: 'DELETE',
+    //         body: JSON.stringify({
+    //           id: button.dataset.art,
+    //         })
+    //       })
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    //     .catch(err => console.log(err))
+    // })
+  </script>
+</body>
+
+</html>

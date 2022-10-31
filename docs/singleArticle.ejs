@@ -1,0 +1,42 @@
+<html lang="en">
+<%- include('./parts/head.ejs') %>
+
+<body>
+  <%- include('./parts/homeBtn.ejs') %>
+  <div class="single-product-title">Informatii despre <span class="spt"><%= article.name %></span> </div>
+  <div class="article-content">
+    <!-- <div class="img-container">
+      <img src="" alt="produs">
+    </div> -->
+    <div class="article-info">
+      <div class="article-title">Numele produsului : <%= article.name %></div>
+      <div class="article-price">Pretul produsului : <%= article.price %> lei</div>
+      <div class="article-description">Despre produs : <%= article.description %></div>
+    </div>
+    <div class="delete-product-container">
+      <a class="delete-article" data-article="<%= article._id %>">
+        <button id="delete-article-btn" class="btn">Sterge acest articol</button>
+      </a>
+    </div>
+  </div>
+  <%- include('./parts/footer.ejs') %>
+  <script>
+    const deleteCategory = document.querySelector('.delete-article')
+
+    deleteCategory.addEventListener('click', e => {
+      const endpoint = `/home/<%= title %>/${deleteCategory.dataset.article}`
+      fetch(endpoint, {
+          method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(data => window.location.href = data.redirect)
+        .catch(err => console.log(err))
+    })
+
+    const homebtn = document.querySelector('.home-container')
+
+    homebtn.style.top = '100px'
+  </script>
+</body>
+
+</html>

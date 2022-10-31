@@ -1,0 +1,31 @@
+<html lang="en">
+
+<%- include('./parts/head.ejs') %>
+
+<body class="error">
+  <%- include('./parts/homeBtn.ejs') %>
+  <h1>Eroare 404</h1>
+  <h1>Pagina nu a fost gasita</h1>
+  <h2>Inapoi spre pagina principala <span id="timeout">10</span></h2>
+  <div class="emptyi-div">
+
+  </div>
+  <%- include('./parts/footer.ejs') %>
+  <script>
+    const timeoutSpan = document.querySelector('#timeout')
+    let time = 10;
+    setInterval(() => {
+      time -= 1
+      timeoutSpan.textContent = time;
+      checkTime()
+    }, 1000)
+
+    function checkTime() {
+      if (time === 0) {
+        window.location = "/"
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<html lang="en">
+
+<%- include('./parts/head.ejs') %>
+
+<body>
+  <div class="header">
+    <div class="header-logo">
+      <img src="logo.png">
+    </div>
+    <div class="header-title">For Free</div>
+  </div>
+  <div class="about-this-site">Acest site a fost creat pentru publicarea gratuita a categoriilor si articolelor</div>
+  <div class="categories-wrapper">
+    <div class="categories">
+      <% if (category.length > 0) { %>
+      <% category.forEach( (cat )=> { %>
+      <a href="/home/<%= cat.title%>">
+
+        <div><%= cat.title %>(<%= cat.articles.length - 1 %>)</div>
+        <% }) %> <% } else { %>
+        <p>Nu sunt categorii de afisat</p>
+
+        <% } %>
+      </a>
+    </div>
+    <div class="add-category-container">
+      <a href="/createCategory"><button id="add-category-btn" class="add-category btn">Adauga o categorie</button></a>
+    </div>
+  </div>
+  <div class="last-articles">
+    <div class="articles-title">Ultimele postari</div>
+    <div class="articles">
+      <% if (lastArticles.length >= 3 ) { %>
+      <% console.log(lastArticles)  %>
+      <% lastArticles.forEach( (art) =>{ %>
+      <div class="article">
+        <div class="art-title"><span class="p1">Numele produsului: </span><%= art.mergeObjects[0].articles.name %></div>
+        <div class="art-date"><span class="p2">Publicat la data:</span> <%= art.mergeObjects[0].articles.createdAt %></div>
+      </div>
+      <% }) %> <% }else { %>
+      <p>Nu exista 3 produse recente</p>
+
+      <% } %>
+
+
+    </div>
+  </div>
+  <%- include('./parts/footer.ejs') %>
+</body>
+
+</html>

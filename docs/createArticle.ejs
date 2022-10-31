@@ -1,0 +1,37 @@
+<html lang="en">
+<%- include('./parts/head.ejs') %>
+
+<body>
+  <%- include('./parts/homeBtn.ejs') %>
+  <div class="new-products">
+    Despre produsul tau
+  </div>
+  <div class="form-wrapper">
+    <form action="/home" method="POST">
+      <div>
+
+        <label for="name">Denumire produs</label>
+        <input type="text" id="name" name="name" placeholder="Ex. Shaker Proteine" required>
+      </div>
+      <div>
+
+        <label for="price">Pret produs</label>
+        <input type="text" id="price" name="price" placeholder="Ex. 30 (RON va fi aplicat)" required>
+      </div>
+      <div>
+
+        <label for="description">Descriere produs</label>
+        <textarea name="description" id="description" cols="26" rows="5" placeholder='Ex. "Shaker cu o capacitate de 500ml din plastic" ' required></textarea>
+        <input type="text" placeholder="Numele categoriei..." id="add-category-input" required name="title" value="<%= title %>" hidden>
+      </div>
+
+      <button id="post-article" class="btn">Posteaza</button>
+    </form>
+  </div>
+
+
+  <%- include('./parts/footer.ejs') %>
+
+</body>
+
+</html>
