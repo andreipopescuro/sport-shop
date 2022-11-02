@@ -7,7 +7,7 @@
     Despre produsul tau
   </div>
   <div class="form-wrapper">
-    <form action="/home" method="POST">
+    <form action="/home" method="POST" enctype="multipart/form-data">
       <div>
 
         <label for="name">Denumire produs</label>
@@ -24,14 +24,24 @@
         <textarea name="description" id="description" cols="26" rows="5" placeholder='Ex. "Shaker cu o capacitate de 500ml din plastic" ' required></textarea>
         <input type="text" placeholder="Numele categoriei..." id="add-category-input" required name="title" value="<%= title %>" hidden>
       </div>
+      <div>
+        <label for="image">Poza produsului</label>
+        <input type="file" accept="image/png,image/jpeg" id="image" name="image" class="inp">
+      </div>
 
-      <button id="post-article" class="btn">Posteaza</button>
+      <button id="post-article" class="btn" type="submit">Posteaza</button>
     </form>
   </div>
 
 
   <%- include('./parts/footer.ejs') %>
-
+  <script>
+    const chooseImg = document.querySelector('#chooseImg')
+    const inpFile = document.querySelector('.inp')
+    chooseImg.addEventListener('click', () => {
+      inpFile.click()
+    })
+  </script>
 </body>
 
 </html>

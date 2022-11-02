@@ -13,6 +13,10 @@ const categorySchema = new Schema({
       description: String,
       createdAt: Date,
       article: Boolean,
+      img: {
+        data: Buffer,
+        contentType: String,
+      },
     },
   ],
 });

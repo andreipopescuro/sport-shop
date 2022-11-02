@@ -34,13 +34,20 @@
 
       <div class="artcl">
         <div class="about-art">
+          <div class="img-container">
+            <% if (article.img.data) { %>
+            <img src="data:image/<%= article.img.contentType%>;base64,<%= article.img.data.toString('base64')%>" class="user-img">
+            <% }  else { %>
+            <img src="/no-img.png" class="user-img">
+            <% } %>
+          </div>
           <div class="article-title"><span class="p1">Produs : </span> <%= article.name %></div>
           <div class="article-price"><span class="p2">Pret : </span><%= article.price %> lei</div>
         </div>
         <a href="/home/<%= title %>/<%= article._id %>">Mai multe...
         </a>
         <div class="delete-article-container">
-          <a data-art="<% article._id %>" class="del-art">
+          <a data-art="<%= article._id %>" class="del-art">
             <button class="btn">Sterge articol</button>
           </a>
         </div>
@@ -62,28 +69,25 @@
       const endpoint = `/home/${deleteCategory.dataset.doc}`
       fetch(endpoint, {
           method: 'DELETE',
-          body: 'daat'
         })
         .then(response => response.json())
         .then(data => window.location.href = data.redirect)
         .catch(err => console.log(err))
     })
 
-    // const allDeleleArticleButtons = document.querySelectorAll('.del-art')
-    // allDeleleArticleButtons.forEach((button) => {
-    //   button.addEventListener('click', () => {
-    //       const endpoint = `/home/${deleteCategory.dataset.doc}`
-    //       fetch(endpoint, {
-    //         method: 'DELETE',
-    //         body: JSON.stringify({
-    //           id: button.dataset.art,
-    //         })
-    //       })
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    //     .catch(err => console.log(err))
-    // })
+    const allDeleleArticleButtons = document.querySelectorAll('.del-art')
+    allDeleleArticleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+
+        const endpoint = `/home/<%= title %>/${button.dataset.art}`
+        fetch(endpoint, {
+            method: 'DELETE',
+          })
+          .then(response => response.json())
+          .then(data => window.location.href = data.redirect)
+          .catch(err => console.log(err))
+      })
+    })
   </script>
 </body>
 
