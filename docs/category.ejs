@@ -9,7 +9,6 @@
     <a class="delete-category" data-doc="<%= title %>">
       <button class="btn">Sterge aceasta categorie</button>
     </a>
-    <!-- redirect catre home page -->
   </div>
   <div class="art-wrapper">
     <div class="category-article-header">
@@ -74,6 +73,7 @@
         .then(data => window.location.href = data.redirect)
         .catch(err => console.log(err))
     })
+
 
     const allDeleleArticleButtons = document.querySelectorAll('.del-art')
     allDeleleArticleButtons.forEach((button) => {
