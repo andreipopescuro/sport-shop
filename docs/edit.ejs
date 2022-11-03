@@ -4,29 +4,29 @@
 <body>
   <%- include('./parts/homeBtn.ejs') %>
   <div class="new-products">
-    Despre produsul tau
+    Edit
   </div>
   <div class="form-wrapper">
-    <form action="/home" method="POST" enctype="multipart/form-data">
+    <form action="/home/<%= title %>" method="POST" enctype="multipart/form-data">
       <div>
 
         <label for="name">Denumire produs</label>
-        <input type="text" id="name" name="name" placeholder="Ex. Shaker Proteine" required>
+        <input type="text" id="name" name="name" placeholder="Ex. Shaker Proteine" required value="<%= article.name%>">
       </div>
       <div>
 
         <label for="price">Pret produs</label>
-        <input type="text" id="price" name="price" placeholder="Ex. 30 (RON va fi aplicat)" required>
+        <input type="text" id="price" name="price" placeholder="Ex. 30 (RON va fi aplicat)" required value="<%= article.price%>">
       </div>
       <div>
-
         <label for="description">Descriere produs</label>
-        <textarea name="description" id="description" cols="26" rows="5" placeholder='Ex. "Shaker cu o capacitate de 500ml din plastic" ' required></textarea>
+        <textarea name="description" id="description" cols="26" rows="5" placeholder='Ex. "Shaker cu o capacitate de 500ml din plastic" ' required><%= article.name%></textarea>
         <input type="text" placeholder="Numele categoriei..." id="add-category-input" required name="title" value="<%= title %>" hidden>
       </div>
       <div>
         <label for="image">Poza produsului</label>
-        <input type="file" accept="image/png,image/jpeg" id="image" name="image" class="inp">
+        <input type="file" accept="image/png,image/jpeg" id="image" name="image" class="inp" value="head.jpeg">
+        <input type="text" name="id" value="<%= article._id %>" hidden>
       </div>
 
       <button id="post-article" class="btn" type="submit">Posteaza</button>
@@ -35,7 +35,9 @@
 
 
   <%- include('./parts/footer.ejs') %>
+  <script>
 
+  </script>
 </body>
 
 </html>

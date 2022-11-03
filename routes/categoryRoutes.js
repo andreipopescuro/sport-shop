@@ -19,9 +19,13 @@ router.post("/", upload.single("image"), categoryController.postHome);
 
 router.get("/:title", categoryController.showHomeTitle);
 
+router.post("/:title", upload.single("image"), categoryController.postEdited);
+
 router.get("/:title/createArticle", categoryController.showTitleCreateArticle);
 
-router.get("/:title:id", categoryController.showHomeTitleArticle);
+router.get("/:title/:id", categoryController.showHomeTitleArticle);
+
+router.get("/:title/edit/:id", categoryController.showHomeTitleEditArticle);
 
 router.delete("/:title", categoryController.deleteHomeTitle);
 
