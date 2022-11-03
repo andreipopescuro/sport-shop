@@ -262,7 +262,6 @@ const deleteHomeTitle = (req, res) => {
 const deleteHomeTitleArticle = (req, res) => {
   const id = req.params.id;
   const title = req.params.title;
-  console.log(id, title);
   Category.updateOne(
     {
       title: title,
@@ -277,6 +276,59 @@ const deleteHomeTitleArticle = (req, res) => {
     });
 };
 
+const showHomeTitleEditArticle = (req, res) => {
+  const title = req.params.title;
+  const id = req.params.id;
+  Category.find({ title: title }).then((result) => {
+    res.render("edit", {
+      title: title,
+      article: result[0].articles.find((art) => art._id.toString() == id),
+    });
+  });
+};
+
+const postEdited = (req, res) => {
+  const title = req.body.title;
+  const id = req.body.id;
+  if (req.file) {
+    Category.updateOne(
+      { "articles._id": id },
+      {
+        "articles.$": {
+          name: req.body.name,
+          price: req.body.price,
+          description: req.body.description,
+          createdAt: new Date(),
+          article: true,
+          img: {
+            data: fs.readFileSync(
+              path.join(__dirname, "..", "/uploads/" + req.file.filename)
+            ),
+            contentType: "image/png",
+          },
+        },
+      }
+    ).then((resonse) => {
+      res.redirect(`/home/${title}`);
+    });
+  } else {
+    Category.updateOne(
+      { "articles._id": id },
+      {
+        "articles.$": {
+          name: req.body.name,
+          price: req.body.price,
+          description: req.body.description,
+          createdAt: new Date(),
+          article: true,
+        },
+      }
+    ).then((resonse) => {
+      res.redirect(`/home/${title}`);
+    });
+  }
+};
+
 module.exports = {
   showHome,
   postHome,
@@ -285,4 +337,6 @@ module.exports = {
   showHomeTitleArticle,
   deleteHomeTitle,
   deleteHomeTitleArticle,
+  showHomeTitleEditArticle,
+  postEdited,
 };

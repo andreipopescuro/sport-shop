@@ -35,7 +35,11 @@
       <% lastArticles.forEach( (art) =>{ %>
       <div class="article">
         <div class="art-title"><span class="p1">Numele produsului: </span><%= art.mergeObjects[0].articles.name %></div>
-        <div class="art-date"><span class="p2">Publicat la data:</span> <%= art.mergeObjects[0].articles.createdAt %></div>
+        <div class="art-date"><span class="p2">Publicat la data:</span> <%= art.mergeObjects[0].articles.createdAt.toLocaleDateString("ro-RO", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })   %></div>
       </div>
       <% }) %> <% }else { %>
       <p>Nu exista 3 produse recente</p>
