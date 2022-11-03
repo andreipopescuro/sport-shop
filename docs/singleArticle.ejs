@@ -5,9 +5,13 @@
   <%- include('./parts/homeBtn.ejs') %>
   <div class="single-product-title">Informatii despre <span class="spt"><%= article.name %></span> </div>
   <div class="article-content">
-    <!-- <div class="img-container">
-      <img src="" alt="produs">
-    </div> -->
+    <div class="img-container">
+      <% if (article.img.data) { %>
+      <img src="data:image/<%= article.img.contentType%>;base64,<%= article.img.data.toString('base64')%>" class="user-img">
+      <% }  else { %>
+      <img src="/no-img.png" class="user-img">
+      <% } %>
+    </div>
     <div class="article-info">
       <div class="article-title">Numele produsului : <%= article.name %></div>
       <div class="article-price">Pretul produsului : <%= article.price %> lei</div>
