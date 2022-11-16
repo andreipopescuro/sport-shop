@@ -1,9 +1,10 @@
 # Simple Website 
-
+## For this project I used
 ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
+! Javascript
+- Express
++ EJS
+# Multer for uploading images
++ MongoDB & Mongoose
+@@ CSS @@
 ```
