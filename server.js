@@ -11,7 +11,7 @@ const PORT = 3000;
 const categoryRoutes = require("./routes/categoryRoutes");
 
 const dburl = `mongodb+srv://shop:${process.env.PASSWORD}@shop.ecyouvg.mongodb.net/shop?retryWrites=true&w=majority`;
-
+                                    //  shop2022  ps
 mongoose
   .connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
