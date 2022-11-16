@@ -14,6 +14,7 @@
 ### First page
 * You can add a new category.
 * The last three posts appear on the first page.
+
 ![](presentation/prima-pagina.png)
 
 ### Add a new category
@@ -32,7 +33,6 @@
 
 ### Publish a product
 * If no picture is entered, one will be generated as "NO IMAGE AVABILE"
-* 
 ![](presentation/create-article.png)
 
 ### Edit a product
