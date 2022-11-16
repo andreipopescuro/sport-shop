@@ -1,5 +1,5 @@
 # Simple Website 
-## For this project I used
+### For this project I used
 ```diff
 ! Javascript
 - Express
@@ -8,3 +8,9 @@
 + MongoDB & Mongoose
 @@ CSS @@
 ```
+
+# This is how it works
+
+### First page
+
+![](presentation/prima-pagina.png)
